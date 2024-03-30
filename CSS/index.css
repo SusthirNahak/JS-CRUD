@@ -16,7 +16,7 @@
 .btn-upper-box{
     width: 100%;
     display: flex;
-    padding: 20px;
+    padding: 30px;
 }
 .btn-upper-box .left-box{
     width: 50%;
@@ -160,7 +160,7 @@
     opacity: 0;
 }
 .modal .left-modal .img-box img{
-    border-radius: 8px;
+    border-radius: 72px;
     position: absolute;
 }
 .modal .right-modal .input-box{
@@ -203,4 +203,10 @@
 }
 #submitbtn{
     margin-top: 20px;
+}
+.img-box h3{
+    margin-top: 200px;
+    text-align: center;
+    font-size: 18px;
+    color: #3958EC;
 }

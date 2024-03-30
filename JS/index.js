@@ -1,12 +1,12 @@
-var addBtn =document.querySelector("#add_emp-btn");
-var Modal =document.querySelector(".modal");
-var CloseButton =document.querySelector(".close-btn");
-addBtn.onclick=function(){
-   Modal.classList.add("active")
-}
-CloseButton.onclick=function(){
-   Modal.classList.remove("active")
-}
+var addBtn = document.querySelector("#add_emp-btn");
+var Modal = document.querySelector(".modal");
+var CloseButton = document.querySelector(".close-btn");
+addBtn.onclick = function () {
+  Modal.classList.add("active");
+};
+CloseButton.onclick = function () {
+  Modal.classList.remove("active");
+};
 
 // CloseButton.addEventListener("click",()=>{
 //     Modal.classList.remove("active")
@@ -18,37 +18,48 @@ var EmpName = document.getElementById("emp_name");
 var EmpEmail = document.getElementById("emp_email");
 var EmpMobile = document.getElementById("emp_mob");
 var EmpDesig = document.getElementById("emp_desig");
-var Form =document.getElementById("reg-form")
+var Form = document.getElementById("reg-form");
 
+var UserRegData = [];
 
-var UserRegData=[];
-
-RegisterBtn.addEventListener("click",(e)=>{
-    e.preventDefault();
-    RegistrationData();
-    Form.reset('');
-    CloseButton.click();
-})
-if(localStorage.getItem("MyData") != null){
-    var UserRegData=JSON.parse(localStorage.getItem("MyData"));
+RegisterBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  RegistrationData();
+  getDatafromLocal();
+  Form.reset("");
+  CloseButton.click();
+});
+if (localStorage.getItem("MyData") != null) {
+  var UserRegData = JSON.parse(localStorage.getItem("MyData"));
 }
-var Table =document.getElementById("tabledata")
-const getDatafromLocal =()=>{
-    UserRegData.forEach((data,index)=>{
+var TableData = document.getElementById("tabledata");
+const getDatafromLocal = () => {
+    TableData.innerHTML = ""
+  UserRegData.forEach((data, index) => {
+    TableData.innerHTML += `<tr>
+                                <td>${index+1}</td>
+                                <td>${data.EmpId}</td>
+                                <td>${data.EmpName}</td>
+                                <td>${data.EmpEmail}</td>
+                                <td>${data.EmpMobile}</td>
+                                <td>${data.EmpDesig}</td>
+                                <td>
+                                    <button><i class="fa fa-eye"></i></button>
+                                    <button style="background-color: red;"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>`;
+  });
+};
+getDatafromLocal();
 
-    })
-}
-
-
-function RegistrationData(){
-    UserRegData.push({
-        EmpId :EmpId.value,
-        EmpName :EmpName.value,
-        EmpEmail :EmpEmail.value,
-        EmpMobile :EmpMobile.value,
-        EmpDesig :EmpDesig.value,
-    })
-    var UserRegStringData = JSON.stringify(UserRegData);
-    localStorage.setItem("MyData",UserRegStringData)
-
+function RegistrationData() {
+  UserRegData.push({
+    EmpId: EmpId.value,
+    EmpName: EmpName.value,
+    EmpEmail: EmpEmail.value,
+    EmpMobile: EmpMobile.value,
+    EmpDesig: EmpDesig.value,
+  });
+  var UserRegStringData = JSON.stringify(UserRegData);
+  localStorage.setItem("MyData", UserRegStringData);
 }
