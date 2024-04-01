@@ -34,9 +34,9 @@ if (localStorage.getItem("MyData") != null) {
 }
 var TableData = document.getElementById("tabledata");
 const getDatafromLocal = () => {
-    TableData.innerHTML = ""
+  TableData.innerHTML = ""
   UserRegData.forEach((data, index) => {
-    TableData.innerHTML += `<tr>
+  TableData.innerHTML += `<tr>
                                 <td>${index+1}</td>
                                 <td>${data.EmpId}</td>
                                 <td>${data.EmpName}</td>
@@ -45,10 +45,26 @@ const getDatafromLocal = () => {
                                 <td>${data.EmpDesig}</td>
                                 <td>
                                     <button><i class="fa fa-eye"></i></button>
-                                    <button style="background-color: red;"><i class="fa fa-trash"></i></button>
+                                    <button class="del-btn" style="background-color: red;"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>`;
   });
+// Delete row coding
+// var i;
+// var allDltBtn =document.querySelectorAll(".del-btn")
+// for(i=0;i<=allDltBtn.length;i++){
+//         allDltBtn[i].onclick = function(){
+//         var tr = this.parentElement.parentElement;
+//         var id = tr.getAttribute("index")
+//         UserRegData.splice(id,1)
+//         var UserRegStringData = JSON.stringify(UserRegData);
+//         localStorage.setItem("MyData", UserRegStringData);
+//         tr.remove()
+//       }
+
+// }
+
+
 };
 getDatafromLocal();
 
@@ -62,4 +78,5 @@ function RegistrationData() {
   });
   var UserRegStringData = JSON.stringify(UserRegData);
   localStorage.setItem("MyData", UserRegStringData);
+  swal("Good job!", "You are registered successfully!", "success");
 }
